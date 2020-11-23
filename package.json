@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "commit": "npx cz",
-      "test": "jest",
-      "test:watch": "jest --watchAll"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "husky": {
     "hooks": {
@@ -16,13 +16,16 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-angular": "^11.0.0",
+    "@types/jest": "^26.0.15",
+    "babel-jest": "^26.6.3",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.3.0",
-      "@types/jest": "^26.0.15",
-      "jest": "^26.6.3"
+    "jest": "^26.6.3"
   },
   "config": {
     "commitizen": {
