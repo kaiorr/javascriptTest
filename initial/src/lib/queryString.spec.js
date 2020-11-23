@@ -44,9 +44,21 @@ describe('Query string to object', () => {
  })
 
  it('should convert a query string to object ', () => {
+
   const qs = 'name=Kaio'
+
   expect(parse(qs)).toEqual({
     name: 'Kaio'
+  })
+})
+
+it('should convert a query string to object ', () => {
+
+  const qs = 'name=Kaio&abilities=JS,TDD'
+
+  expect(parse(qs)).toEqual({
+    name: 'Kaio',
+    abilities: ['JS', 'TDD']
   })
 })
 
