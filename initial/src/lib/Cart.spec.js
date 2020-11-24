@@ -44,4 +44,11 @@ describe('Cart', () => {
     expect(cart.getTotal()).toEqual(759)
   });
 
+  it('should update total when a product gets included and then remove', () => {
+    cart.add({
+      product,
+      quantity: 2,
+    })
+  });
+
 })
