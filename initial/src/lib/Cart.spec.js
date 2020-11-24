@@ -23,4 +23,25 @@ describe('Cart', () => {
 
     expect(cart.getTotal()).toEqual(7176)
   });
+
+  it('should ensure no more than on product exists at a time ', () => {
+    cart.add({
+      product: {
+        title: 'Nike shox',
+        price: 150
+      },
+      quantity: 2
+    });
+
+    cart.add({
+      product: {
+        title: 'Skate',
+        price: 459
+      },
+      quantity: 1,
+    })
+
+    expect(cart.getTotal()).toEqual(759)
+  });
+
 })
