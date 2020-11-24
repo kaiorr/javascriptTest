@@ -1,4 +1,4 @@
-import find from 'lodash/findLastKey'
+import find from 'lodash/find'
 import remove from 'lodash/remove'
 
 export default class Cart {
@@ -13,9 +13,20 @@ export default class Cart {
     this.items.push(item)
   }
 
+  remove(product) {
+    remove(this.items, { product })
+  }
+
   getTotal() {
     return this.items.reduce((acumulator, item) => {
       return acumulator + item.quantity * item.product.price
     }, 0)
+  }
+
+  checkout() {
+    return {
+      total: this.getTotal(),
+      items: this.items
+    }
   }
 }
