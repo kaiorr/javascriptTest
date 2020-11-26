@@ -25,7 +25,18 @@ export default class Cart {
 
   getTotal() {
     return this.items.reduce((acumulator, item) => {
-      return acumulator.add(Money({ amount: item.quantity * item.product.price }))
+      const amount = Money({ amount: item.quantity * item.product.price })
+      let discount = Money({ amount: 0 })
+
+      if (
+          item.condition &&
+          item.condition.percentage &&
+          item.quantity > item.condition.minimum
+          ) {
+            discount = amount.percentage(item.condition.percentage)
+          }
+
+      return acumulator.add(amount).subtract(discount)
     }, Money({ amount: 0 }))
   }
 

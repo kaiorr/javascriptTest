@@ -97,7 +97,7 @@ describe('Cart', () => {
   });
 
   describe('Especial Condition', () => {
-    fit('should aplly percentage discount quantity above minimum is passed', () => {
+    it('should aplly percentage discount quantity above minimum is passed', () => {
       const condition = {
         percentage: 30,
         minimum: 2
@@ -106,10 +106,10 @@ describe('Cart', () => {
       cart.add({
         product,
         condition,
-        quantity: 3
+        quantity: 5
       })
 
-      expect(cart.getTotal().getAmount()).toEqual(10764)
+      expect(cart.getTotal().getAmount()).toEqual(12558)
     });
 
 
