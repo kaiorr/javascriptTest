@@ -1,16 +1,40 @@
-import styles from '../styles/Home.module.css'
-
 export default function Home() {
+
+  const renderProductListOrMessage = () => {
+    if (localProducts.length === 0 && !error) {
+      return <h4 data-testid="no-products">No products</h4>;
+    }
+    return localProducts.map((product) => (
+      <ProductCard product={product} key={product.id} addToCart={addToCart} />
+    ));
+  };
+
+  const renderErrorMessage = () => {
+    if (!error) {
+      return null;
+    }
+    return <h4 data-testid="server-error">Server is down</h4>;
+  };
+
+  const renderProductQuantity = () => {
+    return localProducts.length === 1
+      ? '1 Product'
+      : `${localProducts.length} Products`;
+  };
+
   return (
-    <div className={styles.container}>
-
-      <main className={styles.main}>
-
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
-
-    </div>
-  )
+    <main data-testid="product-list" className="my-8">
+      <Search doSearch={(term) => setTerm(term)} />
+      <div className="container mx-auto px-6">
+        <h3 className="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
+        <span className="mt-3 text-sm text-gray-500">
+          {renderProductQuantity()}
+        </span>
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+          {renderErrorMessage()}
+          {renderProductListOrMessage()}
+        </div>
+      </div>
+    </main>
+  );
 }
